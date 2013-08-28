@@ -59,5 +59,8 @@ int gdev_ioctl_gref(Ghandle h, unsigned long arg);
 int gdev_ioctl_gunref(Ghandle h, unsigned long arg);
 int gdev_ioctl_gphysget(Ghandle h, unsigned long arg);
 int gdev_ioctl_gvirtget(Ghandle h, unsigned long arg);
+/* farm  */
+int gdev_ioctl_gsendcmd_fuc(Ghandle h, unsigned long arg);
+int gdev_ioctl_gmemcpy_fuc(Ghandle h, unsigned long arg);
 
 #endif

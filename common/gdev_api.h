@@ -73,6 +73,8 @@ uint64_t gref(Ghandle hmaster, uint64_t addr, uint64_t size, Ghandle hslave);
 int gunref(Ghandle h, uint64_t addr);
 uint64_t gphysget(Ghandle h, const void *p);
 uint64_t gvirtget(Ghandle h, const void *p);
+int gsendcmd_micro(struct gdev_handle *h, uint32_t cmd, uint32_t data);
+int gmemcpy_fuc(struct gdev_handle *h, uint32_t cmd, uint32_t data,uint32_t size,uint32_t status);
 
 
 /**
@@ -87,12 +89,10 @@ uint64_t gvirtget(Ghandle h, const void *p);
 #define GDEV_QUERY_DEVICE_MEM_SIZE 1
 #define GDEV_QUERY_DMA_MEM_SIZE 2
 #define GDEV_QUERY_CHIPSET 3
-#if 1 /* add *//* axe */
 #define  GDEV_QUERY_BUS_TYPE 4
 #define  GDEV_QUERY_AGP_SIZE 5
 #define  GDEV_QUERY_PCI_VENDOR 6
 #define  GDEV_QUERY_PCI_DEVICE 7
-#endif
 
 /**
  * IPC commands:

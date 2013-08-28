@@ -249,6 +249,9 @@ uint32_t gdev_raw_read32(struct gdev_mem *mem, uint64_t addr);
 void gdev_raw_write32(struct gdev_mem *mem, uint64_t addr, uint32_t val);
 int gdev_raw_read(struct gdev_mem *mem, void *buf, uint64_t addr, uint32_t size);
 int gdev_raw_write(struct gdev_mem *mem, uint64_t addr, const void *buf, uint32_t size);
+/* farm  */
+int gdev_raw_sendcmd_fuc(struct gdev_device *gdev, uint32_t cmd, uint32_t data);
+int gdev_raw_memcpy_fuc(struct gdev_device *gdev, uint32_t dst, uint32_t src, uint32_t size);
 
 static inline void __gdev_fire_ring(struct gdev_ctx *ctx)
 {

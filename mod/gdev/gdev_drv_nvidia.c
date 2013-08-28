@@ -617,3 +617,12 @@ int gdev_raw_query(struct gdev_device *gdev, uint32_t type, uint64_t *res)
 		return -EINVAL;
 	}
 }
+int gdev_raw_sendcmd_fuc(struct gdev_device *gdev, uint32_t cmd, uint32_t data){
+    struct drm_device *drm = (struct drm_device *)gdev->priv;
+    return gdev_drv_sendcmd_fuc(drm,cmd,data);
+}
+int gdev_raw_memcpy_fuc(struct gdev_device *gdev, uint32_t dst, uint32_t src, uint32_t size){
+    struct drm_device *drm = (struct drm_device *)gdev->priv;
+    int status;
+    return gdev_drv_memcpy_fuc(drm,dst,src,size,status);
+}

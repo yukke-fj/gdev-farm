@@ -36,6 +36,7 @@
 #include "gdev_ioctl_def.h"
 #include "gdev_lib.h"
 #include "gdev_list.h"
+#include "farm.h"
 
 struct gdev_map_bo {
 	uint64_t addr;
@@ -524,3 +525,27 @@ virtget:
 
 	return virt.virt;
 }
+
+int gsendcmd_micro(struct gdev_handle *h, uint32_t cmd, uint32_t data)
+{
+	     int fd = h->fd;
+	     struct fuc_send fuc;
+	     fuc.cmd = cmd;
+	     fuc.data = data;
+	     ioctl(fd, GDEV_IOCTL_SENDCMD_FUC, &fuc);
+	     return fuc.status;
+}
+
+
+int gmemcpy_fuc(struct gdev_handle *h, uint32_t dst, uint32_t src, uint32_t size,uint32_t status)
+{
+	     int fd = h->fd;
+	     struct fuc fuc;
+	     fuc.dst_addr = dst;
+	     fuc.src_addr = src;
+	     fuc.size=size;
+	     fuc.status=status; // FUC_MEMCPY_ASYNC or FUC_MEMCPY_SYNC
+	     ioctl(fd, GDEV_IOCTL_MEMCPY_FUC, &fuc);
+	     return fuc.status;
+}
+

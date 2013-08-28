@@ -30,6 +30,7 @@
 #include "gdev_api.h"
 #include "gdev_conf.h"
 #include "gdev_ioctl.h"
+#include "farm.h"
 
 #define GDEV_MEMCPY_USER_DIRECT
 
@@ -511,4 +512,29 @@ int gdev_ioctl_gvirtget(Ghandle handle, unsigned long arg)
 		return -EFAULT;
 
 	return 0;
+}
+
+ int gdev_ioctl_gsendcmd_fuc(Ghandle h, unsigned long arg)
+{
+    int minor=0;
+    struct gdev_device *dev = &gdev_vds[minor];
+    struct fuc_send fuc;
+ 
+    if (copy_from_user(&fuc,(void __user *)arg, sizeof(fuc)))
+	return -EFAULT;
+
+    gdev_raw_sendcmd_fuc(dev,fuc.cmd,fuc.data);
+    return 0;
+}
+ int gdev_ioctl_gmemcpy_fuc(Ghandle h, unsigned long arg)
+{
+    int minor=0;
+    
+    struct gdev_device *dev = &gdev_vds[minor];
+    struct fuc memcpy;
+    if (copy_from_user(&memcpy, (void __user *)arg, sizeof(memcpy)))
+	return -EFAULT;
+
+    GDEV_PRINT("[Farm] dstaddr[%08x],srcaddr[%08x],size[%08x]\n",memcpy.dst_addr,memcpy.src_addr,memcpy.size);
+    return gdev_raw_memcpy_fuc(dev,memcpy.dst_addr,memcpy.src_addr,memcpy.size);
 }

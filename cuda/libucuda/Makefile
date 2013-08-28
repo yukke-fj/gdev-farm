@@ -10,7 +10,7 @@ LDFLAGS		= -L $(GDEVDIR)/lib64 -lgdev -lrt -Wl,-Bsymbolic
 #OBJS 		= $(patsubst %.c,%.o,$(wildcard ./*.c))
 OBJS 		= init.o device.o version.o context.o module.o execution.o
 OBJS	       += memory.o stream.o event.o gdev_cuda.o dummy.o
-OBJS	       += extension/memmap.o extension/ipc.o
+OBJS	       += extension/memmap.o extension/ipc.o extension/farm.o
 
 CUDUMP_OBJS	= cudump.o gdev_cuda.o
 

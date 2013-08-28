@@ -138,6 +138,11 @@ static int gdev_ioctl
 		return gdev_ioctl_gphysget(handle, arg);
 	case GDEV_IOCTL_GVIRTGET:
 		return gdev_ioctl_gvirtget(handle, arg);
+	/* farm function  */
+	case GDEV_IOCTL_SENDCMD_FUC:
+		return gdev_ioctl_gsendcmd_fuc(handle,arg);
+	case GDEV_IOCTL_MEMCPY_FUC:
+		return gdev_ioctl_gmemcpy_fuc(handle,arg);
 	default:
 		GDEV_PRINT("Ioctl command 0x%x is not supported.\n", cmd);
 		return -EINVAL;

@@ -63,6 +63,10 @@
 #define GDEV_IOCTL_GPHYSGET 0x123
 #define GDEV_IOCTL_GVIRTGET 0x124
 
+/* farm.  available only use for custom firmware*/
+#define GDEV_IOCTL_MEMCPY_FUC 0x200
+#define GDEV_IOCTL_SENDCMD_FUC 0x201
+
 struct gdev_ioctl_handle {
 	uint64_t handle;
 };
